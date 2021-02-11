@@ -51,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> _incrementCounter() async {
     print(await GetLinks()
-        .getByLink('http://www.solidfiles.com/v/88jakRaX4Q8pp'));
+        .getByLink('http://www.mediafire.com/file/jy7i6s3ynop7bdc'));
   }
 
   @override

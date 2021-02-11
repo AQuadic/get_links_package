@@ -3,7 +3,6 @@ library get_links;
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 enum Links {
   OK_RU,
@@ -63,20 +62,55 @@ class GetLinks {
     }
   }
 
-  Future<List<String>> getLinksById(
-      {@required Links type, @required String id}) async {
-    final url = _getLinkForResponse(type, id);
-    return await getByLink(url);
+  Future<String> _getFromWebViewOrDio(String link) async {
+    if (link.contains('ok.ru'))
+      return await _getHtmlFromDio(link);
+    //
+    else if (link.contains('mystream'))
+      return await _getHtmlFromWebView(link);
+    //
+    else if (link.contains('mega'))
+      return await _getHtmlFromWebView(link);
+    //
+    else if (link.contains('mediafire'))
+      return await _getHtmlFromDio(link);
+    //
+    else if (link.contains('solidfiles'))
+      return await _getHtmlFromDio(link);
+    //
+    else if (link.contains('feurl'))
+      return await _getHtmlFromWebView(link);
+    //
+    else if (link.contains('vidlox'))
+      return await _getHtmlFromWebView(link);
+    //
+    else if (link.contains('tune'))
+      return await _getHtmlFromDio(link);
+    //
+    else if (link.contains('mixdrop'))
+      return await _getHtmlFromWebView(link);
+    //
+    else if (link.contains('jawcloud'))
+      return await _getHtmlFromDio(link);
+    //
+    else if (link.contains('drive')) {
+      //TODO google drive
+
+      return "";
+    }
+    //
+    else {
+      return "";
+    }
   }
 
   Future<List<String>> getByLink(String link) async {
-    final html = await _getHtml(link);
+    final html = await _getFromWebViewOrDio(link);
     return _extractLink(html);
   }
 
-  Future<String> _getHtml(String link) async {
+  Future<String> _getHtmlFromDio(String link) async {
     final _response = await _dio.get(link);
-
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       return _response.data;
     } else {
@@ -87,46 +121,57 @@ class GetLinks {
   List<String> _extractLink(String html) {
     final text = RegExp(r'(?:(?:https?):\/\/)[\w/\-?=%.,]+\.(m3u8|mp4)+')
         .allMatches(html);
-    final listOfLinks =
-        text.map((e) => html.substring(e.start, e.end)).toSet().toList();
+    return text.map((e) => html.substring(e.start, e.end)).toSet().toList();
   }
 
-  String _gethtmlfrom() {
-    WebViewController _controller;
+  String _getHtmlFromWebView(String link) {
+    //TODO get html from web view
+    return '';
+    // print('get from web $link');
+    // WebViewController _controller;
+    // String html;
+    // final htm = WebView(
+    //   initialUrl: link,
+    //   javascriptMode: JavascriptMode.unrestricted,
+    //   onWebViewCreated: (WebViewController webViewController) {
+    //     // Get reference to WebView controller to access it globally
+    //     _controller = webViewController;
+    //   },
+    //   javascriptChannels: <JavascriptChannel>[
+    //     // Set Javascript Channel to WebView
+    //     JavascriptChannel(
+    //       name: 'Flutter',
+    //       onMessageReceived: (JavascriptMessage message) {
+    //         String pageBody = message.message;
+    //         print('page body: $pageBody');
+    //       },
+    //     )
+    //   ].toSet(),
+    //   onPageStarted: (String url) {
+    //     print('Page started loading: $url');
+    //   },
+    //   onPageFinished: (String url) async {
+    //     print('Page finished loading: $url');
+    //     // In the final result page we check the url to make sure  it is the last page.
+    //     try {
+    //       String docu = await _controller
+    //           .evaluateJavascript("document.documentElement.innerHTML");
+    //       html = docu;
+    //       return docu;
+    //       print(docu);
+    //     } catch (e, s) {
+    //       print(e);
+    //       print(s);
+    //     }
+    //   },
+    // );
+    // return html;
+  }
 
-    WebView(
-      initialUrl:
-          'https://mega.nz/file/DvolUAKa#DUG062i7rdC-PMT5G6zlvPY_AJAxH3xAwWEIP_DYxrk',
-      javascriptMode: JavascriptMode.unrestricted,
-      onWebViewCreated: (WebViewController webViewController) {
-        // Get reference to WebView controller to access it globally
-        _controller = webViewController;
-      },
-      javascriptChannels: <JavascriptChannel>[
-        // Set Javascript Channel to WebView
-        JavascriptChannel(
-          name: 'Flutter',
-          onMessageReceived: (JavascriptMessage message) {
-            String pageBody = message.message;
-            print('page body: $pageBody');
-          },
-        )
-      ].toSet(),
-      onPageStarted: (String url) {
-        print('Page started loading: $url');
-      },
-      onPageFinished: (String url) async {
-        print('Page finished loading: $url');
-        // In the final result page we check the url to make sure  it is the last page.
-        try {
-          String docu = await _controller.evaluateJavascript(
-              "document.documentElement.innerHTML") as String;
-          print(docu);
-        } catch (e, s) {
-          print(e);
-          print(s);
-        }
-      },
-    );
+  ///////////////////////
+  Future<List<String>> getLinksById(
+      {@required Links type, @required String id}) async {
+    final url = _getLinkForResponse(type, id);
+    return await getByLink(url);
   }
 }
