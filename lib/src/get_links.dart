@@ -43,7 +43,7 @@ class AQFetcher {
       case AQVideoWebsite.GOOGLE_DRIVE:
         throw UnimplementedError();
       default:
-        throw "Website Not Found";
+        throw "Website Not Supported";
     }
   }
 }

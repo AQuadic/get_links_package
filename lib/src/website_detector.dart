@@ -38,7 +38,7 @@ class AQWebsiteDetector {
         return "http://jawcloud.co/embed-$id.html";
         break;
       default:
-        throw "Website Not Found";
+        throw "Unknown Website.";
     }
   }
 
@@ -76,7 +76,7 @@ class AQWebsiteDetector {
     else if (link.contains('drive.google.com'))
       return AQVideoWebsite.GOOGLE_DRIVE;
 
-    throw "Website Not Found";
+    throw "Unknown Website";
   }
 
   _completeMegaLink(String id) {
