@@ -1,0 +1,14 @@
+enum VideoWebsite {
+  OK_RU,
+  MYSTREAM_TO,
+  MEGA_NZ,
+  MEDIAFIRE,
+  SOLIDFILES,
+  FEMBED,
+  FEURL,
+  GOOGLE_DRIVE,
+  VIDLOX,
+  TUNE,
+  MIXDROP,
+  JAWCLOUD
+}
