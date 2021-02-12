@@ -1,7 +1,7 @@
 name: get_links
 description: to get links easily
 version: 0.0.1
-author:
+author: AQuadic Software Solutions (Hello@AQuadic.com)
 homepage: https://github.com/TinyProgrammers/get_links_package
 
 environment:
