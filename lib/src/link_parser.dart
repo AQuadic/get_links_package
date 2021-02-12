@@ -1,20 +1,20 @@
 import 'package:get_links/enum/video_website.dart';
 
 class AQHTMLParser {
-  List<String> parseHTML(VideoWebsite type, String html) {
+  List<String> parseHTML(AQVideoWebsite type, String html) {
     switch (type) {
-      case VideoWebsite.OK_RU:
-      case VideoWebsite.MYSTREAM_TO:
-      case VideoWebsite.MEGA_NZ:
-      case VideoWebsite.MEDIAFIRE:
-      case VideoWebsite.SOLIDFILES:
-      case VideoWebsite.FEMBED:
-      case VideoWebsite.FEURL:
-      case VideoWebsite.GOOGLE_DRIVE:
-      case VideoWebsite.VIDLOX:
-      case VideoWebsite.TUNE:
-      case VideoWebsite.MIXDROP:
-      case VideoWebsite.JAWCLOUD:
+      case AQVideoWebsite.OK_RU:
+      case AQVideoWebsite.MYSTREAM_TO:
+      case AQVideoWebsite.MEGA_NZ:
+      case AQVideoWebsite.MEDIAFIRE:
+      case AQVideoWebsite.SOLIDFILES:
+      case AQVideoWebsite.FEMBED:
+      case AQVideoWebsite.FEURL:
+      case AQVideoWebsite.GOOGLE_DRIVE:
+      case AQVideoWebsite.VIDLOX:
+      case AQVideoWebsite.TUNE:
+      case AQVideoWebsite.MIXDROP:
+      case AQVideoWebsite.JAWCLOUD:
       default:
         return _defaultLinkParser(html);
     }

@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:flutter/foundation.dart' show kDebugMode;
 
-class DioFetcher {
-  DioFetcher() {
+class AQDioFetcher {
+  AQDioFetcher() {
     if (kDebugMode) _dio.interceptors.add(_logger);
   }
 

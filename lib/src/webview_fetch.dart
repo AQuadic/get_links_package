@@ -1,7 +1,6 @@
-class WebViewFetcher {
+class AQWebViewFetcher {
   Future<String> getHtmlFromWebView(String link) async{
-    //TODO get html from web view
-    return '';
+    throw UnimplementedError();
     // print('get from web $link');
     // WebViewController _controller;
     // String html;

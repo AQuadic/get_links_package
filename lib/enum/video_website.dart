@@ -1,4 +1,4 @@
-enum VideoWebsite {
+enum AQVideoWebsite {
   OK_RU,
   MYSTREAM_TO,
   MEGA_NZ,
