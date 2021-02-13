@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:flutter/foundation.dart';
 import 'package:get_links/enum/video_website.dart';
 import 'package:get_links/src/link_parser.dart';
 import 'package:interactive_webview/interactive_webview.dart';
