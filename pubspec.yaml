@@ -17,7 +17,7 @@ dependencies:
   pretty_dio_logger: ^1.1.1
 
   # Webview
-#  webview_flutter: ^1.0.7
+  interactive_webview: ^0.1.2
 
 dev_dependencies:
   dapackages: ^1.4.0  # flutter pub pub run dapackages:dapackages.dart ./pubspec.yaml

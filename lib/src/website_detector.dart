@@ -7,7 +7,7 @@ class AQWebsiteDetector {
         return "https://ok.ru/video/$id";
         break;
       case AQVideoWebsite.MYSTREAM_TO:
-        return "https://mystream.to/watch/$id";
+        return "https://embed.mystream.to/$id";
         break;
       case AQVideoWebsite.MEGA_NZ:
         return _completeMegaLink(id);
@@ -43,44 +43,77 @@ class AQWebsiteDetector {
   }
 
   AQVideoWebsite getWebsiteType(String link) {
-    if (link.contains('ok.ru'))
+    if (link.contains('ok.ru/'))
       return AQVideoWebsite.OK_RU;
     //
-    else if (link.contains('mystream.to'))
+    else if (link.contains('mystream.to/'))
       return AQVideoWebsite.MYSTREAM_TO;
     //
-    else if (link.contains('mega.nz'))
+    else if (link.contains('mega.nz/'))
       return AQVideoWebsite.MEGA_NZ;
     //
-    else if (link.contains('mediafire.com'))
+    else if (link.contains('mediafire.com/'))
       return AQVideoWebsite.MEDIAFIRE;
     //
-    else if (link.contains('solidfiles.com'))
+    else if (link.contains('solidfiles.com/'))
       return AQVideoWebsite.SOLIDFILES;
     //
-    else if (link.contains('feurl.com'))
+    else if (link.contains('fembed.com/'))
+      return AQVideoWebsite.FEMBED;
+    //
+    else if (link.contains('feurl.com/'))
       return AQVideoWebsite.FEURL;
     //
-    else if (link.contains('vidlox.me'))
+    else if (link.contains('vidlox.me/'))
       return AQVideoWebsite.VIDLOX;
     //
-    else if (link.contains('tune.pk'))
+    else if (link.contains('tune.pk/'))
       return AQVideoWebsite.TUNE;
     //
-    else if (link.contains('mixdrop.co'))
+    else if (link.contains('mixdrop.co/'))
       return AQVideoWebsite.MIXDROP;
     //
-    else if (link.contains('jawcloud.co'))
+    else if (link.contains('jawcloud.co/'))
       return AQVideoWebsite.JAWCLOUD;
     //
-    else if (link.contains('drive.google.com'))
+    else if (link.contains('drive.google.com/'))
       return AQVideoWebsite.GOOGLE_DRIVE;
 
     throw "Unknown Website";
   }
 
   _completeMegaLink(String id) {
-    return id.replaceFirst("!", "#");
+    return "https://mega.nz/file/${id.replaceFirst("!", "#")}";
+  }
+
+  String extractIdFromLink(AQVideoWebsite type, String link) {
+    final _splits = link.split('/');
+
+    switch (type) {
+      case AQVideoWebsite.OK_RU:
+      case AQVideoWebsite.MEGA_NZ:
+      case AQVideoWebsite.MYSTREAM_TO:
+      case AQVideoWebsite.SOLIDFILES:
+      case AQVideoWebsite.FEURL:
+      case AQVideoWebsite.TUNE:
+      case AQVideoWebsite.MIXDROP:
+        return _splits[4];
+        break;
+      case AQVideoWebsite.MEDIAFIRE:
+        return _splits[3].replaceFirst('?', '');
+        break;
+      case AQVideoWebsite.FEMBED:
+      case AQVideoWebsite.GOOGLE_DRIVE:
+        return _splits[5];
+        break;
+      case AQVideoWebsite.VIDLOX:
+      case AQVideoWebsite.JAWCLOUD:
+        final _firstSplit = _splits[3];
+        return _firstSplit.split('embed-')[1].split('.html')[0];
+        break;
+      default:
+        throw "Unknown Website.";
+    }
   }
 
   String getServerNickName(String link) {

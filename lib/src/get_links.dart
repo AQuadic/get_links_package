@@ -11,13 +11,16 @@ class AQFetcher {
     @required String id,
   }) async {
     final url = AQWebsiteDetector().getWebsiteString(type, id);
-    return await getByLink(link: url, type: type);
+    return await _getFromWebViewOrDio(url, type);
   }
 
-  Future<List<String>> getByLink(
-      {@required String link, AQVideoWebsite type}) async {
+  Future<List<String>> getByLink({
+    @required String link,
+    AQVideoWebsite type,
+  }) async {
     type ??= AQWebsiteDetector().getWebsiteType(link);
-    return await _getFromWebViewOrDio(link, type);
+    final id = AQWebsiteDetector().extractIdFromLink(type, link);
+    return await getLinksById(id: id, type: type);
   }
 
   Future<List<String>> _getFromWebViewOrDio(
@@ -27,20 +30,22 @@ class AQFetcher {
       case AQVideoWebsite.TUNE:
       case AQVideoWebsite.JAWCLOUD:
       case AQVideoWebsite.SOLIDFILES:
-      case AQVideoWebsite.OK_RU:
         final _html = await AQDioFetcher().getHtmlFromDio(link);
         return AQHTMLParser().parseHTML(type, _html);
         break;
-      case AQVideoWebsite.FEMBED:
-      case AQVideoWebsite.FEURL:
-      case AQVideoWebsite.VIDLOX:
-      case AQVideoWebsite.MIXDROP:
+      case AQVideoWebsite.VIDLOX: // generated link doesn't work.
       case AQVideoWebsite.MYSTREAM_TO:
-      case AQVideoWebsite.MEGA_NZ:
-        final _html = await AQWebViewFetcher().getHtmlFromWebView(link);
-        return AQHTMLParser().parseHTML(type, _html);
+        final _fetcher = AQWebViewFetcher(type, link);
+        final _links = await _fetcher.streamController.stream.first;
+        await _fetcher.dispose();
+        return _links;
         break;
-      case AQVideoWebsite.GOOGLE_DRIVE:
+      case AQVideoWebsite.FEMBED: // webview.
+      case AQVideoWebsite.FEURL: // webview.
+      case AQVideoWebsite.MIXDROP: // have captcha and other stuff.
+      case AQVideoWebsite.OK_RU: // unknown.
+      case AQVideoWebsite.MEGA_NZ: // hard to fetch.
+      case AQVideoWebsite.GOOGLE_DRIVE: // need account access.
         throw UnimplementedError();
       default:
         throw "Website Not Supported";
