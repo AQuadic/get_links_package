@@ -33,7 +33,6 @@ class AQFetcher {
         final _html = await AQDioFetcher().getHtmlFromDio(link);
         return AQHTMLParser().parseHTML(type, _html);
         break;
-      case AQVideoWebsite.VIDLOX: // generated link doesn't work.
       case AQVideoWebsite.MYSTREAM_TO:
         final _fetcher = AQWebViewFetcher(type, link);
         final _links = await _fetcher.streamController.stream.first;
@@ -42,6 +41,7 @@ class AQFetcher {
         break;
       case AQVideoWebsite.FEMBED: // webview.
       case AQVideoWebsite.FEURL: // webview.
+      case AQVideoWebsite.VIDLOX: // generated link doesn't work.
       case AQVideoWebsite.MIXDROP: // have captcha and other stuff.
       case AQVideoWebsite.OK_RU: // unknown.
       case AQVideoWebsite.MEGA_NZ: // hard to fetch.

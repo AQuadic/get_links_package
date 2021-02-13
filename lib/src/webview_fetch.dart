@@ -44,6 +44,7 @@ class AQWebViewFetcher {
     if (message.data is Map<dynamic, dynamic> &&
         ((message.data as Map<dynamic, dynamic>).keys).contains('name') &&
         message.data['name'] == 'AQ_NAME_DATA') {
+      // debugPrint(message.data['data'].toString(), wrapWidth: 512);
       final links = AQHTMLParser().parseHTML(type, message.data['data']);
       if(streamController.isClosed) return;
       streamController.add(links);
@@ -52,16 +53,20 @@ class AQWebViewFetcher {
 
   _onStateChanged(WebViewStateChanged event) {
     if (event.type == WebViewState.didFinish) {
-      final _number = Random().nextInt(99);
       _webView.evalJavascript('''
 
-        const nativeCommunicator$_number = typeof webkit !== 'undefined' ? webkit.messageHandlers.native : window.native;
+        function aqFetcher(){
+        const nativeCommunicator = typeof webkit !== 'undefined' ? webkit.messageHandlers.native : window.native;
         
-        const x$_number = document.documentElement.innerHTML;
+        const x = document.documentElement.innerHTML;
         
-        const array$_number = {name: "AQ_NAME_DATA", data: x$_number};
+        const array = {name: "AQ_NAME_DATA", data: x};
         
-        nativeCommunicator$_number.postMessage(JSON.stringify(array$_number));
+        nativeCommunicator.postMessage(JSON.stringify(array));
+        
+        }
+        
+        aqFetcher();
         
         ''');
     }
