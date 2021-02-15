@@ -1,14 +1,75 @@
-# get_links
+# Get Direct Links From Online Video Players.
 
-A new Flutter package.
+#### Information about this project:
 
-## Getting Started
+**AQFetcher** - Get Direct Links From Online Video Players.
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+**Application Category**: Dart/Flutter Package.
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+**Support Email**: [hello@AQuadic.com](mailto:hello@AQuadic.com).
+
+#### Developers worked on this:
+
+**Saifallak** [Whatsapp](https://api.whatsapp.com/send?phone=0201129261195) / [Website](http://AQuadic.com).
+
+#### Package runs on:
+
+Android: api16+ (Kitkat 4.4+).
+
+IOS: 9.0+.
+
+Fuchsia: none.
+
+Desktop: none.
+
+Web: none.
+
+#### Developing environment:
+
+Developed with Flutter on Dev Branch (1.26.0+).
+
+Dart SDK Dev Branch (2.11.0+).
+
+supporting AndroidX Libraries (merged to androidX).
+
+#### Release Certificates Fingerprints:
+
+MD5: (##Missing).
+
+SHA1: (##Missing).
+
+SHA256: (##Missing).
+
+#### Upload Certificates Fingerprints:
+
+MD5: (##Missing).
+
+SHA1: (##Missing).
+
+SHA256: (##Missing).
+
+#### AdMob:
+
+appId: (##Missing).
+
+Interstitial : (##Missing).
+
+Banner : (##Missing).
+
+Reward : (##Missing).
+
+#### Links:
+
+[Admin Panel] (##Missing).
+
+[App Icon](./example/android/app/src/main/web_hi_res_512.png).
+
+[Privacy Policy] (##Missing).
+
+[Internal Test Play Store Link] (##Missing).
+
+[Play Store Link (Production)] (##Missing).
+
+[Play Store Console] (##Missing).
+
+[App Store Link (Production)] (##Missing).
