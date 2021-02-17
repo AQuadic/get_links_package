@@ -10,5 +10,7 @@ enum AQVideoWebsite {
   VIDLOX,
   TUNE,
   MIXDROP,
-  JAWCLOUD
+  JAWCLOUD,
+  UP_TO_STREAM,
+  UP_TO_BOX,
 }

@@ -9,6 +9,10 @@ class AQWebsiteDetector {
       case AQVideoWebsite.MYSTREAM_TO:
         return "https://embed.mystream.to/$id";
         break;
+      case AQVideoWebsite.UP_TO_STREAM:
+      case AQVideoWebsite.UP_TO_BOX:
+        return "https://uptostream.com/$id";
+        break;
       case AQVideoWebsite.MEGA_NZ:
         return _completeMegaLink(id);
         break;
@@ -48,6 +52,12 @@ class AQWebsiteDetector {
     //
     else if (link.contains('mystream.to/'))
       return AQVideoWebsite.MYSTREAM_TO;
+    //
+    else if (link.contains('uptostream.com/'))
+      return AQVideoWebsite.UP_TO_STREAM;
+    //
+    else if (link.contains('uptobox.com/'))
+      return AQVideoWebsite.UP_TO_BOX;
     //
     else if (link.contains('mega.nz/'))
       return AQVideoWebsite.MEGA_NZ;
@@ -100,6 +110,8 @@ class AQWebsiteDetector {
         return _splits[4];
         break;
       case AQVideoWebsite.MEDIAFIRE:
+      case AQVideoWebsite.UP_TO_STREAM:
+      case AQVideoWebsite.UP_TO_BOX:
         return _splits[3].replaceFirst('?', '');
         break;
       case AQVideoWebsite.FEMBED:
@@ -124,6 +136,12 @@ class AQWebsiteDetector {
         break;
       case AQVideoWebsite.MYSTREAM_TO:
         return "MS";
+        break;
+      case AQVideoWebsite.UP_TO_STREAM:
+        return "US";
+        break;
+      case AQVideoWebsite.UP_TO_BOX:
+        return "UB";
         break;
       case AQVideoWebsite.MEGA_NZ:
         return "MZ";

@@ -40,6 +40,8 @@ class _AQHomePageState extends State<AQHomePage> {
     "https://tune.pk/video/8938703/100-man-no-03-hd",
     "https://mixdrop.co/e/3n69pkxof9xv1",
     "http://jawcloud.co/embed-wto9u79ejgrr.html",
+    "https://uptostream.com/uynbcocfvufc",
+    "https://uptobox.com/uynbcocfvufc",
   ];
 
   Future<void> _fetch(BuildContext context, String val) async {

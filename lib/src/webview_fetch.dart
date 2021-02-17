@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:get_links/enum/video_website.dart';
 import 'package:get_links/src/link_parser.dart';
@@ -46,7 +45,7 @@ class AQWebViewFetcher {
         message.data['name'] == 'AQ_NAME_DATA') {
       // debugPrint(message.data['data'].toString(), wrapWidth: 512);
       final links = AQHTMLParser().parseHTML(type, message.data['data']);
-      if(streamController.isClosed) return;
+      if (streamController.isClosed) return;
       streamController.add(links);
     }
   }

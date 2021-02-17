@@ -8,6 +8,8 @@ class AQHTMLParser {
         return _mediaFireFilter(_links);
       case AQVideoWebsite.OK_RU:
       case AQVideoWebsite.MYSTREAM_TO:
+      case AQVideoWebsite.UP_TO_STREAM:
+      case AQVideoWebsite.UP_TO_BOX:
       case AQVideoWebsite.MEGA_NZ:
       case AQVideoWebsite.SOLIDFILES:
       case AQVideoWebsite.FEMBED:
@@ -29,7 +31,8 @@ class AQHTMLParser {
   }
 
   List<String> _mediaFireFilter(List<String> links) {
-    links.removeWhere((value)=> value.startsWith('https://www.') || value.startsWith('http://www.'));
+    links.removeWhere((value) =>
+        value.startsWith('https://www.') || value.startsWith('http://www.'));
     return links;
   }
 }

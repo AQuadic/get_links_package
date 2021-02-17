@@ -34,6 +34,8 @@ class AQFetcher {
         return AQHTMLParser().parseHTML(type, _html);
         break;
       case AQVideoWebsite.MYSTREAM_TO:
+      case AQVideoWebsite.UP_TO_STREAM:
+      case AQVideoWebsite.UP_TO_BOX:
         final _fetcher = AQWebViewFetcher(type, link);
         final _links = await _fetcher.streamController.stream.first;
         await _fetcher.dispose();
