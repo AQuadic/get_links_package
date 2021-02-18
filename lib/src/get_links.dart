@@ -57,7 +57,7 @@ class AQFetcher {
       case AQVideoWebsite.OK_RU: // unknown.
       case AQVideoWebsite.MEGA_NZ: // hard to fetch.
       case AQVideoWebsite.GOOGLE_DRIVE: // need account access.
-        throw UnimplementedError();
+        return [link];
       default:
         throw "Website Not Supported";
     }
