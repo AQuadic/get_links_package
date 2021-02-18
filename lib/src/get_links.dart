@@ -22,7 +22,7 @@ class AQFetcher {
     }
   }
 
-  Future<List<String>> getByLink({
+  Future<dynamic> getByLink({
     @required String link,
     AQVideoWebsite type,
     AQFetchType fetchType,
