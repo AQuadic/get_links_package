@@ -1,0 +1,4 @@
+enum AQFetchType {
+  LINK,
+  WEBVIEW,
+}
