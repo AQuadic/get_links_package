@@ -240,10 +240,10 @@ class AQWebsiteDetector {
       case AQVideoWebsite.JAWCLOUD:
       case AQVideoWebsite.SOLIDFILES:
       case AQVideoWebsite.MYSTREAM_TO:
-      case AQVideoWebsite.UP_TO_STREAM:
-      case AQVideoWebsite.UP_TO_BOX:
         return true;
         break;
+      case AQVideoWebsite.UP_TO_STREAM: // must click on video first
+      case AQVideoWebsite.UP_TO_BOX: // must click on video first
       case AQVideoWebsite.FEMBED: // webview.
       case AQVideoWebsite.FEURL: // webview.
       case AQVideoWebsite.VIDLOX: // generated link doesn't work.
