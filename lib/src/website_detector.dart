@@ -1,7 +1,7 @@
 import 'package:get_links/enum/video_website.dart';
 
 class AQWebsiteDetector {
-  String getWebsiteString(AQVideoWebsite website, String id) {
+  String getWebsiteUrl(AQVideoWebsite website, String id) {
     switch (website) {
       case AQVideoWebsite.OK_RU:
         return "https://ok.ru/video/$id";
@@ -173,6 +173,87 @@ class AQWebsiteDetector {
         break;
       default:
         return "AQ";
+    }
+  }
+
+  String getServerFullName(String link) {
+    final _type = getWebsiteType(link);
+    switch (_type) {
+      case AQVideoWebsite.OK_RU:
+        return "Ok.ru";
+        break;
+      case AQVideoWebsite.MYSTREAM_TO:
+        return "MyStream.to";
+        break;
+      case AQVideoWebsite.UP_TO_STREAM:
+        return "UpToStream";
+        break;
+      case AQVideoWebsite.UP_TO_BOX:
+        return "UpToBox";
+        break;
+      case AQVideoWebsite.MEGA_NZ:
+        return "Mega.nz";
+        break;
+      case AQVideoWebsite.MEDIAFIRE:
+        return "MediaFire";
+        break;
+      case AQVideoWebsite.SOLIDFILES:
+        return "SolidFiles";
+        break;
+      case AQVideoWebsite.FEMBED:
+        return "FEmbed";
+        break;
+      case AQVideoWebsite.FEURL:
+        return "FeUrl";
+        break;
+      case AQVideoWebsite.GOOGLE_DRIVE:
+        return "GoogleDrive";
+        break;
+      case AQVideoWebsite.VIDLOX:
+        return "VidLox";
+        break;
+      case AQVideoWebsite.TUNE:
+        return "Tune";
+        break;
+      case AQVideoWebsite.MIXDROP:
+        return "MixDrop";
+        break;
+      case AQVideoWebsite.JAWCLOUD:
+        return "JawCloud";
+        break;
+      default:
+        return "AQ Server";
+    }
+  }
+
+  bool isSupportedWebsite(String link) {
+    AQVideoWebsite type;
+    try {
+      type = getWebsiteType(link);
+    } catch (e) {
+      type = null;
+    }
+
+    switch (type) {
+      case AQVideoWebsite.MEDIAFIRE:
+      case AQVideoWebsite.TUNE:
+      case AQVideoWebsite.JAWCLOUD:
+      case AQVideoWebsite.SOLIDFILES:
+      case AQVideoWebsite.MYSTREAM_TO:
+      case AQVideoWebsite.UP_TO_STREAM:
+      case AQVideoWebsite.UP_TO_BOX:
+        return true;
+        break;
+      case AQVideoWebsite.FEMBED: // webview.
+      case AQVideoWebsite.FEURL: // webview.
+      case AQVideoWebsite.VIDLOX: // generated link doesn't work.
+      case AQVideoWebsite.MIXDROP: // have captcha and other stuff.
+      case AQVideoWebsite.OK_RU: // unknown.
+      case AQVideoWebsite.MEGA_NZ: // hard to fetch.
+      case AQVideoWebsite.GOOGLE_DRIVE: // need account access.
+      default:
+        return false;
+        break;
     }
   }
 }

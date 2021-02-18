@@ -10,7 +10,7 @@ class AQFetcher {
     @required AQVideoWebsite type,
     @required String id,
   }) async {
-    final url = AQWebsiteDetector().getWebsiteString(type, id);
+    final url = AQWebsiteDetector().getWebsiteUrl(type, id);
     return await _getFromWebViewOrDio(url, type);
   }
 
