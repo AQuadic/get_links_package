@@ -17,7 +17,8 @@ class AQEmbedGenerator {
       case AQVideoWebsite.SOLIDFILES:
       case AQVideoWebsite.MYSTREAM_TO:
       case AQVideoWebsite.OK_RU: // unknown.
-        throw _normalVideoEmbed(link);
+        return _normalVideoEmbed(link);
+        break;
       case AQVideoWebsite.GOOGLE_DRIVE: // need account access.
       case AQVideoWebsite.UP_TO_BOX: // must click on video first.
       case AQVideoWebsite.UP_TO_STREAM: // must click on video first.
