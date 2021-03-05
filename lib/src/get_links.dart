@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart' show required;
-import 'package:get_links/enum/fetch_type.dart';
 import 'package:get_links/enum/video_website.dart';
 import 'package:get_links/src/dio_fetch.dart';
 import 'package:get_links/src/embed_generator.dart';
@@ -8,28 +7,29 @@ import 'package:get_links/src/website_detector.dart';
 import 'package:get_links/src/webview_fetch.dart';
 
 class AQFetcher {
-  Future<dynamic> getLinksById({
+    Future<List<String>> getLinksById({
     @required AQVideoWebsite type,
     @required String id,
-    AQFetchType fetchType,
   }) async {
     final url = AQWebsiteDetector().getWebsiteUrl(type, id);
     final links = await _getFromWebViewOrDio(url, type);
-    if (fetchType == AQFetchType.LINK) {
-      return links;
-    } else {
-      return AQEmbedGenerator().generate(links.first, type);
-    }
+    return links;
   }
 
-  Future<dynamic> getByLink({
+  Future<String> getEmbedFromLink({
+    @required String link,
+    @required AQVideoWebsite type,
+  }) {
+    return AQEmbedGenerator().generate(link, type);
+  }
+
+  Future<List<String>> getByLink({
     @required String link,
     AQVideoWebsite type,
-    AQFetchType fetchType,
   }) async {
     type ??= AQWebsiteDetector().getWebsiteType(link);
     final id = AQWebsiteDetector().extractIdFromLink(type, link);
-    return await getLinksById(id: id, type: type, fetchType: fetchType);
+    return await getLinksById(id: id, type: type);
   }
 
   Future<List<String>> _getFromWebViewOrDio(
