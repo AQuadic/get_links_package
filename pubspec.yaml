@@ -13,7 +13,7 @@ dependencies:
     sdk: flutter
 
   #dio Connect.
-  dio: ^3.0.10
+  dio:
   pretty_dio_logger: ^1.1.1
 
   # Webview
