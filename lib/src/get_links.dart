@@ -59,7 +59,7 @@ class AQFetcher {
       case AQVideoWebsite.GOOGLE_DRIVE: // need account access.
         return [link];
       default:
-        throw "Website Not Supported";
+        return [link];
     }
   }
 }
