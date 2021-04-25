@@ -13,5 +13,6 @@ enum AQVideoWebsite {
   JAWCLOUD,
   UP_TO_STREAM,
   UP_TO_BOX,
+  MP4UPLOAD,
   UNKNOWN,
 }

@@ -28,18 +28,18 @@ class _AQHomePageState extends State<AQHomePage> {
   String _fetchingLink;
   List<String> _links = [];
   List<String> _testingLinks = [
-    "http://ok.ru/video/1826829830855",
+    "https://ok.ru/video/1826829830855",
     "https://mystream.to/watch/leyn3wamlk4j",
     "https://mega.nz/file/DvolUAKa#DUG062i7rdC-PMT5G6zlvPY_AJAxH3xAwWEIP_DYxrk",
-    "http://www.mediafire.com/?xd9ocis79brkqnj",
-    "http://www.solidfiles.com/v/88jakRaX4Q8pp",
+    "https://www.mediafire.com/?xd9ocis79brkqnj",
+    "https://www.solidfiles.com/v/88jakRaX4Q8pp",
     "https://www.fembed.com/api/source/n80d0b23x6gnp2j",
     "https://feurl.com/v/54x36ide7j2ynkg",
     "https://drive.google.com/file/d/1oJJRVprpeFELXK9vxbB8tuCvlTqQpVXP/view?usp=sharing",
     "https://vidlox.me/embed-oeice9s9u6ek.html",
     "https://tune.pk/video/8938703/100-man-no-03-hd",
     "https://mixdrop.co/e/3n69pkxof9xv1",
-    "http://jawcloud.co/embed-wto9u79ejgrr.html",
+    "https://jawcloud.co/embed-wto9u79ejgrr.html",
     "https://uptostream.com/uynbcocfvufc",
     "https://uptobox.com/uynbcocfvufc",
   ];
@@ -55,7 +55,7 @@ class _AQHomePageState extends State<AQHomePage> {
       await Future.delayed(Duration(seconds: 1));
 
       // Get Links.
-      _links = await AQFetcher().getByLink(link: val);
+      _links = [(AQFetcher.parseStreamLink(link: val)).embedLink];
 
       // Disable Loading...
       _isLoading = false;

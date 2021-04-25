@@ -10,7 +10,7 @@ class AQEmbedGenerator {
       case AQVideoWebsite.FEURL: // webview.
       case AQVideoWebsite.MIXDROP: // have captcha and other stuff.
         return _embedVideoEmbed(link);
-      break;
+        break;
       case AQVideoWebsite.MEDIAFIRE:
       case AQVideoWebsite.TUNE:
       case AQVideoWebsite.JAWCLOUD:

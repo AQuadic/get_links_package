@@ -1,23 +1,8 @@
 name: get_links
 description: to get links easily
-version: 0.0.1
+version: 0.0.3
 author: AQuadic Software Solutions (Hello@AQuadic.com)
 homepage: https://github.com/TinyProgrammers/get_links_package
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
-  flutter: ">=1.17.0"
-
-dependencies:
-  flutter:
-    sdk: flutter
-
-  #dio Connect.
-  dio:
-  pretty_dio_logger: ^1.1.1
-
-  # Webview
-  interactive_webview: ^0.1.2
-
-dev_dependencies:
-  dapackages: ^1.4.0  # flutter pub pub run dapackages:dapackages.dart ./pubspec.yaml
+  sdk: ">=2.11.0 <3.0.0"

@@ -1,7 +1,7 @@
 import 'package:get_links/enum/video_website.dart';
 
 class AQWebsiteDetector {
-  String getWebsiteUrl(AQVideoWebsite website, String id) {
+  String getEmbedWebsiteUrl(AQVideoWebsite website, String id) {
     switch (website) {
       case AQVideoWebsite.OK_RU:
         return "https://ok.ru/video/$id";
@@ -11,16 +11,13 @@ class AQWebsiteDetector {
         break;
       case AQVideoWebsite.UP_TO_STREAM:
       case AQVideoWebsite.UP_TO_BOX:
-        return "https://uptostream.com/$id";
+        return "https://uptostream.com/iframe/$id";
         break;
       case AQVideoWebsite.MEGA_NZ:
-        return _completeMegaLink(id);
-        break;
-      case AQVideoWebsite.MEDIAFIRE:
-        return "http://www.mediafire.com/file/$id";
+        return "https://mega.nz/file/${id.replaceFirst("!", "#")}";
         break;
       case AQVideoWebsite.SOLIDFILES:
-        return "http://www.solidfiles.com/v/$id";
+        return "https://www.solidfiles.com/v/$id";
         break;
       case AQVideoWebsite.FEMBED:
       case AQVideoWebsite.FEURL:
@@ -30,23 +27,69 @@ class AQWebsiteDetector {
         return "https://drive.google.com/file/d/$id/view?usp=sharing";
         break;
       case AQVideoWebsite.VIDLOX:
-        return "http://vidlox.me/embed-$id";
+        return "https://vidlox.me/embed-$id";
         break;
-      case AQVideoWebsite.TUNE:
-        return "https://tune.pk/video/$id";
-        break;
+
       case AQVideoWebsite.MIXDROP:
         return "https://mixdrop.co/e/$id";
         break;
       case AQVideoWebsite.JAWCLOUD:
-        return "http://jawcloud.co/embed-$id.html";
+        return "https://jawcloud.co/embed-$id.html";
         break;
+      case AQVideoWebsite.MP4UPLOAD:
+        return "https://www.mp4upload.com/embed-$id.html";
+        break;
+      // case AQVideoWebsite.MEDIAFIRE:
+      //   return "https://www.mediafire.com/file/$id";
+      //   break;
+      // case AQVideoWebsite.TUNE:
+      // ex: https://tune.pk/js/open/embed.js?vid=8930819&userid=569794
+      //   return "https://tune.pk/video/$id";
+      //   break;
       default:
-        return id;
+        return null;
+    }
+  }
+
+  String getXGetterUrl(AQVideoWebsite website, String id) {
+    switch (website) {
+      case AQVideoWebsite.OK_RU:
+        return "https://ok.ru/video/$id";
+        break;
+      case AQVideoWebsite.UP_TO_STREAM:
+      case AQVideoWebsite.UP_TO_BOX:
+        return "https://uptostream.com/iframe/$id";
+        break;
+      case AQVideoWebsite.SOLIDFILES:
+        return "https://www.solidfiles.com/v/$id";
+        break;
+      case AQVideoWebsite.FEMBED:
+      case AQVideoWebsite.FEURL:
+        return "https://www.fembed.com/v/$id";
+        break;
+      case AQVideoWebsite.GOOGLE_DRIVE:
+        return "https://drive.google.com/open?id=$id";
+        break;
+      case AQVideoWebsite.MP4UPLOAD:
+        return "https://www.mp4upload.com/$id";
+        break;
+      case AQVideoWebsite.MEDIAFIRE:
+        return "https://www.mediafire.com/file/$id/$id/file";
+        break;
+      case AQVideoWebsite.MYSTREAM_TO:
+      case AQVideoWebsite.VIDLOX:
+      case AQVideoWebsite.MEGA_NZ:
+      case AQVideoWebsite.MIXDROP:
+      case AQVideoWebsite.JAWCLOUD:
+      case AQVideoWebsite.TUNE:
+      default:
+        return null;
     }
   }
 
   AQVideoWebsite getWebsiteType(String link) {
+    link = link.toLowerCase(); // just to make sure detector is accurate.
+    //
     if (link.contains('ok.ru/'))
       return AQVideoWebsite.OK_RU;
     //
@@ -88,15 +131,14 @@ class AQWebsiteDetector {
     //
     else if (link.contains('drive.google.com/'))
       return AQVideoWebsite.GOOGLE_DRIVE;
+    //
+    else if (link.contains('mp4upload.com/')) return AQVideoWebsite.MP4UPLOAD;
 
     return AQVideoWebsite.UNKNOWN;
   }
 
-  _completeMegaLink(String id) {
-    return "https://mega.nz/file/${id.replaceFirst("!", "#")}";
-  }
-
   String extractIdFromLink(AQVideoWebsite type, String link) {
+    // TODO: Needs More Refactor.
     final _splits = link.split('/');
 
     switch (type) {
@@ -120,6 +162,7 @@ class AQWebsiteDetector {
         break;
       case AQVideoWebsite.VIDLOX:
       case AQVideoWebsite.JAWCLOUD:
+      case AQVideoWebsite.MP4UPLOAD:
         final _firstSplit = _splits[3];
         return _firstSplit.split('embed-')[1].split('.html')[0];
         break;
@@ -128,9 +171,8 @@ class AQWebsiteDetector {
     }
   }
 
-  String getServerNickName(String link) {
-    final _type = getWebsiteType(link);
-    switch (_type) {
+  String getServerNickName(AQVideoWebsite link) {
+    switch (link) {
       case AQVideoWebsite.OK_RU:
         return "RU";
         break;
@@ -171,14 +213,16 @@ class AQWebsiteDetector {
       case AQVideoWebsite.JAWCLOUD:
         return "JD";
         break;
+      case AQVideoWebsite.MP4UPLOAD:
+        return "MU";
+        break;
       default:
         return "AQ";
     }
   }
 
-  String getServerFullName(String link) {
-    final _type = getWebsiteType(link);
-    switch (_type) {
+  String getServerFullName(AQVideoWebsite type) {
+    switch (type) {
       case AQVideoWebsite.OK_RU:
         return "Ok.ru";
         break;
@@ -221,39 +265,11 @@ class AQWebsiteDetector {
       case AQVideoWebsite.JAWCLOUD:
         return "JawCloud";
         break;
-      default:
-        return "AQ Server";
-    }
-  }
-
-  bool isSupportedWebsite(String link) {
-    AQVideoWebsite type;
-    try {
-      type = getWebsiteType(link);
-    } catch (e) {
-      type = null;
-    }
-
-    switch (type) {
-      case AQVideoWebsite.MEDIAFIRE:
-      case AQVideoWebsite.TUNE:
-      case AQVideoWebsite.JAWCLOUD:
-      case AQVideoWebsite.SOLIDFILES:
-      case AQVideoWebsite.MYSTREAM_TO:
-        return true;
+      case AQVideoWebsite.MP4UPLOAD:
+        return "Mp4Upload";
         break;
-      case AQVideoWebsite.UP_TO_STREAM: // must click on video first
-      case AQVideoWebsite.UP_TO_BOX: // must click on video first
-      case AQVideoWebsite.FEMBED: // webview.
-      case AQVideoWebsite.FEURL: // webview.
-      case AQVideoWebsite.VIDLOX: // generated link doesn't work.
-      case AQVideoWebsite.MIXDROP: // have captcha and other stuff.
-      case AQVideoWebsite.OK_RU: // unknown.
-      case AQVideoWebsite.MEGA_NZ: // hard to fetch.
-      case AQVideoWebsite.GOOGLE_DRIVE: // need account access.
       default:
-        return false;
-        break;
+        return null;
     }
   }
 }
