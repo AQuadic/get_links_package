@@ -25,7 +25,7 @@ class AQEmbedGenerator {
       case AQVideoWebsite.UP_TO_STREAM: // must click on video first.
       case AQVideoWebsite.VIDLOX: // generated link doesn't work.
       default:
-        throw "Website Not Supported";
+        throw null;
     }
   }
 
