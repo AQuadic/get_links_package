@@ -29,7 +29,6 @@ class AQWebsiteDetector {
       case AQVideoWebsite.VIDLOX:
         return "https://vidlox.me/embed-$id";
         break;
-
       case AQVideoWebsite.MIXDROP:
         return "https://mixdrop.co/e/$id";
         break;
@@ -39,10 +38,10 @@ class AQWebsiteDetector {
       case AQVideoWebsite.MP4UPLOAD:
         return "https://www.mp4upload.com/embed-$id.html";
         break;
-      // case AQVideoWebsite.MEDIAFIRE:
+      case AQVideoWebsite.MEDIAFIRE:
       //   return "https://www.mediafire.com/file/$id";
       //   break;
-      // case AQVideoWebsite.TUNE:
+      case AQVideoWebsite.TUNE:
       // ex: https://tune.pk/js/open/embed.js?vid=8930819&userid=569794
       //   return "https://tune.pk/video/$id";
       //   break;
