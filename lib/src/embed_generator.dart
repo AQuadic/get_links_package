@@ -1,7 +1,7 @@
 import 'package:get_links/enum/video_website.dart';
 
 class AQEmbedGenerator {
-  Future<String> generate(String link, AQVideoWebsite type) async {
+  String generate(String link, AQVideoWebsite type) {
     switch (type) {
       case AQVideoWebsite.MEGA_NZ:
         return _megaVideoEmbed(link);
@@ -16,6 +16,7 @@ class AQEmbedGenerator {
       case AQVideoWebsite.JAWCLOUD:
       case AQVideoWebsite.SOLIDFILES:
       case AQVideoWebsite.MYSTREAM_TO:
+      case AQVideoWebsite.MP4UPLOAD:
       case AQVideoWebsite.OK_RU: // unknown.
         return _normalVideoEmbed(link);
         break;
@@ -85,7 +86,7 @@ class AQEmbedGenerator {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AQAnime Player</title>
-    <script src="http://jwpsrv.com/library/FfMxTl3oEeSEiiIACxmInQ.js"></script>
+    <script src="https://jwpsrv.com/library/FfMxTl3oEeSEiiIACxmInQ.js"></script>
     <style>
         html,
         body {
