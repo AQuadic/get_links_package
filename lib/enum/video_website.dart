@@ -14,5 +14,12 @@ enum AQVideoWebsite {
   UP_TO_STREAM,
   UP_TO_BOX,
   MP4UPLOAD,
+  USER_LOAD,
+  SAMA_SHARE,
+  ONE_FICHIER,
+  DOOD_WATCH,
+  YOUD_BOX,
+  VID_BEM,
+  UQ_LOAD,
   UNKNOWN,
 }

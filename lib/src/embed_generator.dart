@@ -24,6 +24,13 @@ class AQEmbedGenerator {
       case AQVideoWebsite.UP_TO_BOX: // must click on video first.
       case AQVideoWebsite.UP_TO_STREAM: // must click on video first.
       case AQVideoWebsite.VIDLOX: // generated link doesn't work.
+      case AQVideoWebsite.USER_LOAD: // not tested
+      case AQVideoWebsite.SAMA_SHARE: // not tested
+      case AQVideoWebsite.ONE_FICHIER: // not tested
+      case AQVideoWebsite.DOOD_WATCH: // not tested
+      case AQVideoWebsite.YOUD_BOX: // not tested
+      case AQVideoWebsite.VID_BEM: // not tested
+      case AQVideoWebsite.UQ_LOAD: // not tested
       default:
         return null;
     }

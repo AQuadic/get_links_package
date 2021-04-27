@@ -38,6 +38,19 @@ class AQWebsiteDetector {
       case AQVideoWebsite.MP4UPLOAD:
         return "https://www.mp4upload.com/embed-$id.html";
         break;
+      case AQVideoWebsite.USER_LOAD:
+        return "https://userload.co/embed/$id";
+      case AQVideoWebsite.SAMA_SHARE:
+        return "https://sama-share.com/embed-$id-1256x718.html";
+      case AQVideoWebsite.DOOD_WATCH:
+        return "https://dood.watch/e/$id";
+      case AQVideoWebsite.YOUD_BOX:
+        return "https://youdbox.net/embed-$id.html";
+      case AQVideoWebsite.VID_BEM:
+        return "https://vidbem.com/embed-$id.html";
+      case AQVideoWebsite.UQ_LOAD:
+        return "https://uqload.com/embed-$id.html";
+      case AQVideoWebsite.ONE_FICHIER:
       case AQVideoWebsite.MEDIAFIRE:
       //   return "https://www.mediafire.com/file/$id";
       //   break;
@@ -81,6 +94,13 @@ class AQWebsiteDetector {
       case AQVideoWebsite.MIXDROP:
       case AQVideoWebsite.JAWCLOUD:
       case AQVideoWebsite.TUNE:
+      case AQVideoWebsite.USER_LOAD:
+      case AQVideoWebsite.SAMA_SHARE:
+      case AQVideoWebsite.ONE_FICHIER:
+      case AQVideoWebsite.DOOD_WATCH:
+      case AQVideoWebsite.YOUD_BOX:
+      case AQVideoWebsite.VID_BEM:
+      case AQVideoWebsite.UQ_LOAD:
       default:
         return null;
     }
@@ -131,7 +151,21 @@ class AQWebsiteDetector {
     else if (link.contains('drive.google.com/'))
       return AQVideoWebsite.GOOGLE_DRIVE;
     //
-    else if (link.contains('mp4upload.com/')) return AQVideoWebsite.MP4UPLOAD;
+    else if (link.contains('mp4upload.com/'))
+      return AQVideoWebsite.MP4UPLOAD;
+    else if (link.contains('userload.co/'))
+      return AQVideoWebsite.USER_LOAD;
+    else if (link.contains('sama-share.com/'))
+      return AQVideoWebsite.SAMA_SHARE;
+    else if (link.contains('1fichier.com/'))
+      return AQVideoWebsite.ONE_FICHIER;
+    else if (link.contains('dood.watch/'))
+      return AQVideoWebsite.DOOD_WATCH;
+    else if (link.contains('youdbox.net/'))
+      return AQVideoWebsite.YOUD_BOX;
+    else if (link.contains('vidbem.com/'))
+      return AQVideoWebsite.VID_BEM;
+    else if (link.contains('uqload.com/')) return AQVideoWebsite.UQ_LOAD;
 
     return AQVideoWebsite.UNKNOWN;
   }
@@ -147,9 +181,13 @@ class AQWebsiteDetector {
       case AQVideoWebsite.SOLIDFILES:
       case AQVideoWebsite.FEURL:
       case AQVideoWebsite.TUNE:
+      case AQVideoWebsite.USER_LOAD:
+      case AQVideoWebsite.DOOD_WATCH:
       case AQVideoWebsite.MIXDROP:
         return _splits[4];
         break;
+      case AQVideoWebsite.ONE_FICHIER:
+      case AQVideoWebsite.SAMA_SHARE:
       case AQVideoWebsite.MEDIAFIRE:
       case AQVideoWebsite.UP_TO_STREAM:
       case AQVideoWebsite.UP_TO_BOX:
@@ -160,11 +198,15 @@ class AQWebsiteDetector {
         return _splits[5];
         break;
       case AQVideoWebsite.VIDLOX:
+      case AQVideoWebsite.YOUD_BOX:
+      case AQVideoWebsite.UQ_LOAD:
       case AQVideoWebsite.JAWCLOUD:
+      case AQVideoWebsite.VID_BEM:
       case AQVideoWebsite.MP4UPLOAD:
         final _firstSplit = _splits[3];
         return _firstSplit.split('embed-')[1].split('.html')[0];
         break;
+
       default:
         return link;
     }
@@ -214,6 +256,27 @@ class AQWebsiteDetector {
         break;
       case AQVideoWebsite.MP4UPLOAD:
         return "MU";
+        break;
+      case AQVideoWebsite.USER_LOAD:
+        return "UL";
+        break;
+      case AQVideoWebsite.SAMA_SHARE:
+        return "SS";
+        break;
+      case AQVideoWebsite.ONE_FICHIER:
+        return "OF";
+        break;
+      case AQVideoWebsite.DOOD_WATCH:
+        return "DW";
+        break;
+      case AQVideoWebsite.YOUD_BOX:
+        return "YB";
+        break;
+      case AQVideoWebsite.VID_BEM:
+        return "VB";
+        break;
+      case AQVideoWebsite.UQ_LOAD:
+        return "UQ";
         break;
       default:
         return "AQ";
@@ -267,6 +330,13 @@ class AQWebsiteDetector {
       case AQVideoWebsite.MP4UPLOAD:
         return "Mp4Upload";
         break;
+      case AQVideoWebsite.USER_LOAD:
+      case AQVideoWebsite.SAMA_SHARE:
+      case AQVideoWebsite.ONE_FICHIER:
+      case AQVideoWebsite.DOOD_WATCH:
+      case AQVideoWebsite.YOUD_BOX:
+      case AQVideoWebsite.VID_BEM:
+      case AQVideoWebsite.UQ_LOAD:
       default:
         return null;
     }
