@@ -70,7 +70,7 @@ class AQWebsiteDetector {
         break;
       case AQVideoWebsite.UP_TO_STREAM:
       case AQVideoWebsite.UP_TO_BOX:
-        return "https://uptostream.com/iframe/$id";
+        return "https://uptostream.com/$id";
         break;
       case AQVideoWebsite.SOLIDFILES:
         return "https://www.solidfiles.com/v/$id";
