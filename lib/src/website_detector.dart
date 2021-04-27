@@ -14,7 +14,7 @@ class AQWebsiteDetector {
         return "https://uptostream.com/iframe/$id";
         break;
       case AQVideoWebsite.MEGA_NZ:
-        return "https://mega.nz/file/${id.replaceFirst("!", "#")}";
+        return "https://mega.nz/file/$id";
         break;
       case AQVideoWebsite.SOLIDFILES:
         return "https://www.solidfiles.com/v/$id";
@@ -176,19 +176,29 @@ class AQWebsiteDetector {
 
     switch (type) {
       case AQVideoWebsite.OK_RU:
-      case AQVideoWebsite.MEGA_NZ:
-      case AQVideoWebsite.MYSTREAM_TO:
       case AQVideoWebsite.SOLIDFILES:
       case AQVideoWebsite.FEURL:
-      case AQVideoWebsite.TUNE:
+      case AQVideoWebsite.TUNE: // bullshit.
       case AQVideoWebsite.USER_LOAD:
       case AQVideoWebsite.DOOD_WATCH:
       case AQVideoWebsite.MIXDROP:
         return _splits[4];
         break;
+      case AQVideoWebsite.MEGA_NZ:
+        String _val = _splits[4] == '/' ? _splits[5] : _splits[4];
+        if (_val[0] == '!') _val = _val.substring(1);
+        return _val.replaceFirst('!', '#');
+        break;
+      case AQVideoWebsite.MYSTREAM_TO:
+        return _splits[3] == 'watch' ? _splits[4] : _splits[3];
+        break;
+      case AQVideoWebsite.MEDIAFIRE:
+        return _splits[3] == 'file'
+            ? _splits[4]
+            : _splits[3].replaceFirst('?', '');
+        break;
       case AQVideoWebsite.ONE_FICHIER:
       case AQVideoWebsite.SAMA_SHARE:
-      case AQVideoWebsite.MEDIAFIRE:
       case AQVideoWebsite.UP_TO_STREAM:
       case AQVideoWebsite.UP_TO_BOX:
         return _splits[3].replaceFirst('?', '');
