@@ -21,5 +21,10 @@ enum AQVideoWebsite {
   YOUD_BOX,
   VID_BEM,
   UQ_LOAD,
+  YOUR_UPLOAD,
+  FOUR_SHARED,
+  SEND_VID,
+  VED_SHAAR,
+  VID_BOOM,
   UNKNOWN,
 }

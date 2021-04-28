@@ -47,9 +47,16 @@ class AQWebsiteDetector {
       case AQVideoWebsite.YOUD_BOX:
         return "https://youdbox.net/embed-$id.html";
       case AQVideoWebsite.VID_BEM:
+      case AQVideoWebsite.VID_BOOM:
         return "https://vidbem.com/embed-$id.html";
       case AQVideoWebsite.UQ_LOAD:
         return "https://uqload.com/embed-$id.html";
+      case AQVideoWebsite.VED_SHAAR:
+        return "https://vedshaar.com/embed-$id.html";
+      case AQVideoWebsite.YOUR_UPLOAD:
+        return "https://www.yourupload.com/embed/$id";
+      case AQVideoWebsite.FOUR_SHARED:
+        return "https://www.4shared.com/web/embed/file/$id";
       case AQVideoWebsite.ONE_FICHIER:
       case AQVideoWebsite.MEDIAFIRE:
       //   return "https://www.mediafire.com/file/$id";
@@ -100,7 +107,11 @@ class AQWebsiteDetector {
       case AQVideoWebsite.DOOD_WATCH:
       case AQVideoWebsite.YOUD_BOX:
       case AQVideoWebsite.VID_BEM:
+      case AQVideoWebsite.VID_BOOM:
       case AQVideoWebsite.UQ_LOAD:
+      case AQVideoWebsite.YOUR_UPLOAD:
+      case AQVideoWebsite.FOUR_SHARED:
+      case AQVideoWebsite.VED_SHAAR:
       default:
         return null;
     }
@@ -142,7 +153,7 @@ class AQWebsiteDetector {
     else if (link.contains('tune.pk/'))
       return AQVideoWebsite.TUNE;
     //
-    else if (link.contains('mixdrop.co/'))
+    else if (link.contains('mixdrop.co/') || link.contains('mixdrop.to/'))
       return AQVideoWebsite.MIXDROP;
     //
     else if (link.contains('jawcloud.co/'))
@@ -153,19 +164,37 @@ class AQWebsiteDetector {
     //
     else if (link.contains('mp4upload.com/'))
       return AQVideoWebsite.MP4UPLOAD;
+    //
     else if (link.contains('userload.co/'))
       return AQVideoWebsite.USER_LOAD;
+    //
     else if (link.contains('sama-share.com/'))
       return AQVideoWebsite.SAMA_SHARE;
+    //
     else if (link.contains('1fichier.com/'))
       return AQVideoWebsite.ONE_FICHIER;
+    //
     else if (link.contains('dood.watch/'))
       return AQVideoWebsite.DOOD_WATCH;
+    //
     else if (link.contains('youdbox.net/'))
       return AQVideoWebsite.YOUD_BOX;
+    //
     else if (link.contains('vidbem.com/'))
       return AQVideoWebsite.VID_BEM;
-    else if (link.contains('uqload.com/')) return AQVideoWebsite.UQ_LOAD;
+    //
+    else if (link.contains('vedboom.com/'))
+      return AQVideoWebsite.VID_BOOM;
+    //
+    else if (link.contains('uqload.com/'))
+      return AQVideoWebsite.UQ_LOAD;
+    //
+    else if (link.contains('yourupload.com/'))
+      return AQVideoWebsite.YOUR_UPLOAD;
+    //
+    else if (link.contains('4shared.com/')) return AQVideoWebsite.FOUR_SHARED;
+    //
+    else if (link.contains('vedshaar.com/')) return AQVideoWebsite.VED_SHAAR;
 
     return AQVideoWebsite.UNKNOWN;
   }
@@ -182,8 +211,11 @@ class AQWebsiteDetector {
       case AQVideoWebsite.USER_LOAD:
       case AQVideoWebsite.DOOD_WATCH:
       case AQVideoWebsite.MIXDROP:
+      case AQVideoWebsite.YOUR_UPLOAD:
         return _splits[4];
         break;
+      case AQVideoWebsite.SEND_VID:
+        return _splits[3] == 'embed' ? _splits[4] : _splits[3];
       case AQVideoWebsite.MEGA_NZ:
         String _val = _splits[4] == '/' ? _splits[5] : _splits[4];
         if (_val[0] == '!') _val = _val.substring(1);
@@ -197,9 +229,15 @@ class AQWebsiteDetector {
             ? _splits[4]
             : _splits[3].replaceFirst('?', '');
         break;
-      case AQVideoWebsite.ONE_FICHIER:
+      case AQVideoWebsite.FOUR_SHARED:
+        return _splits[3] == 'video' ? _splits[4] : _splits[6];
       case AQVideoWebsite.SAMA_SHARE:
+        return _splits[3].contains('embed-')
+            ? _splits[3].split('-')[1]
+            : _splits[3];
+      case AQVideoWebsite.ONE_FICHIER:
       case AQVideoWebsite.UP_TO_STREAM:
+        return _splits[3] == 'iframe' ? _splits[4] : _splits[3];
       case AQVideoWebsite.UP_TO_BOX:
         return _splits[3].replaceFirst('?', '');
         break;
@@ -212,7 +250,9 @@ class AQWebsiteDetector {
       case AQVideoWebsite.UQ_LOAD:
       case AQVideoWebsite.JAWCLOUD:
       case AQVideoWebsite.VID_BEM:
+      case AQVideoWebsite.VID_BOOM:
       case AQVideoWebsite.MP4UPLOAD:
+      case AQVideoWebsite.VED_SHAAR:
         final _firstSplit = _splits[3];
         return _firstSplit.split('embed-')[1].split('.html')[0];
         break;
@@ -283,10 +323,23 @@ class AQWebsiteDetector {
         return "YB";
         break;
       case AQVideoWebsite.VID_BEM:
+      case AQVideoWebsite.VID_BOOM:
         return "VB";
         break;
       case AQVideoWebsite.UQ_LOAD:
         return "UQ";
+        break;
+      case AQVideoWebsite.YOUR_UPLOAD:
+        return "YU";
+        break;
+      case AQVideoWebsite.FOUR_SHARED:
+        return "4S";
+        break;
+      case AQVideoWebsite.SEND_VID:
+        return "SV";
+        break;
+      case AQVideoWebsite.VED_SHAAR:
+        return "SV";
         break;
       default:
         return "AQ";
@@ -346,7 +399,12 @@ class AQWebsiteDetector {
       case AQVideoWebsite.DOOD_WATCH:
       case AQVideoWebsite.YOUD_BOX:
       case AQVideoWebsite.VID_BEM:
+      case AQVideoWebsite.VID_BOOM:
       case AQVideoWebsite.UQ_LOAD:
+      case AQVideoWebsite.YOUR_UPLOAD:
+      case AQVideoWebsite.FOUR_SHARED:
+      case AQVideoWebsite.SEND_VID:
+      case AQVideoWebsite.VED_SHAAR:
       default:
         return null;
     }

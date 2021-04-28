@@ -31,6 +31,9 @@ class AQEmbedGenerator {
       case AQVideoWebsite.YOUD_BOX: // not tested
       case AQVideoWebsite.VID_BEM: // not tested
       case AQVideoWebsite.UQ_LOAD: // not tested
+      case AQVideoWebsite.YOUR_UPLOAD: // not tested
+      case AQVideoWebsite.FOUR_SHARED: // not tested
+      case AQVideoWebsite.SEND_VID: // not tested
       default:
         return null;
     }
