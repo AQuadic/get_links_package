@@ -95,6 +95,9 @@ class AQWebsiteDetector {
       case AQVideoWebsite.MEDIAFIRE:
         return "https://www.mediafire.com/file/$id/$id/file";
         break;
+      case AQVideoWebsite.FOUR_SHARED:
+        return "https://www.4shared.com/video/$id/$id.html";
+        break;
       case AQVideoWebsite.MYSTREAM_TO:
       case AQVideoWebsite.VIDLOX:
       case AQVideoWebsite.MEGA_NZ:
@@ -110,7 +113,6 @@ class AQWebsiteDetector {
       case AQVideoWebsite.VID_BOOM:
       case AQVideoWebsite.UQ_LOAD:
       case AQVideoWebsite.YOUR_UPLOAD:
-      case AQVideoWebsite.FOUR_SHARED:
       case AQVideoWebsite.VED_SHAAR:
       default:
         return null;
@@ -192,7 +194,8 @@ class AQWebsiteDetector {
     else if (link.contains('yourupload.com/'))
       return AQVideoWebsite.YOUR_UPLOAD;
     //
-    else if (link.contains('4shared.com/')) return AQVideoWebsite.FOUR_SHARED;
+    else if (link.contains('4shared.com/'))
+      return AQVideoWebsite.FOUR_SHARED;
     //
     else if (link.contains('vedshaar.com/')) return AQVideoWebsite.VED_SHAAR;
 
