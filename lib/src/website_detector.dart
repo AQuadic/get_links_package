@@ -245,8 +245,15 @@ class AQWebsiteDetector {
         return _splits[3].replaceFirst('?', '');
         break;
       case AQVideoWebsite.FEMBED:
-      case AQVideoWebsite.GOOGLE_DRIVE:
         return _splits[5];
+        break;
+      case AQVideoWebsite.GOOGLE_DRIVE:
+        List<String> _newSplit = link.split('/d/');
+        if (_newSplit.length == 2) {
+          _newSplit = _newSplit[1].split('/');
+          return _newSplit.first;
+        }
+        return Uri.parse(link).queryParameters['id'];
         break;
       case AQVideoWebsite.VIDLOX:
       case AQVideoWebsite.YOUD_BOX:
