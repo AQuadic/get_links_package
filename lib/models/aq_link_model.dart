@@ -33,4 +33,7 @@ class AQLink {
       'link_id': this.linkId,
     };
   }
+
+  @override
+  String toString() => "(AQLink: ${toMap()})";
 }
