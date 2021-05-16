@@ -86,18 +86,12 @@ class AQWebsiteDetector {
       case AQVideoWebsite.FEURL:
         return "https://www.fembed.com/v/$id";
         break;
-      case AQVideoWebsite.GOOGLE_DRIVE:
-        return "https://drive.google.com/open?id=$id";
-        break;
-      case AQVideoWebsite.MP4UPLOAD:
-        return "https://www.mp4upload.com/$id";
-        break;
       case AQVideoWebsite.MEDIAFIRE:
         return "https://www.mediafire.com/file/$id/$id/file";
         break;
+      case AQVideoWebsite.GOOGLE_DRIVE:
+      case AQVideoWebsite.MP4UPLOAD:
       case AQVideoWebsite.FOUR_SHARED:
-        return "https://www.4shared.com/video/$id/$id.html";
-        break;
       case AQVideoWebsite.MYSTREAM_TO:
       case AQVideoWebsite.VIDLOX:
       case AQVideoWebsite.MEGA_NZ:
@@ -220,7 +214,8 @@ class AQWebsiteDetector {
       case AQVideoWebsite.SEND_VID:
         return _splits[3] == 'embed' ? _splits[4] : _splits[3];
       case AQVideoWebsite.MEGA_NZ:
-        String _val = _splits[4] == '/' ? _splits[5] : _splits[4];
+        String _val =
+            (_splits[4] == '/' || _splits[4] == '') ? _splits[5] : _splits[4];
         if (_val[0] == '!') _val = _val.substring(1);
         return _val.replaceFirst('!', '#');
         break;
@@ -233,7 +228,7 @@ class AQWebsiteDetector {
             : _splits[3].replaceFirst('?', '');
         break;
       case AQVideoWebsite.FOUR_SHARED:
-        return _splits[3] == 'video' ? _splits[4] : _splits[6];
+        return _splits[3] == 'web' ? _splits[6] : _splits[4];
       case AQVideoWebsite.SAMA_SHARE:
         return _splits[3].contains('embed-')
             ? _splits[3].split('-')[1]
@@ -245,7 +240,7 @@ class AQWebsiteDetector {
         return _splits[3].replaceFirst('?', '');
         break;
       case AQVideoWebsite.FEMBED:
-        return _splits[5];
+        return _splits.length >= 6 ? _splits[5] : _splits[4];
         break;
       case AQVideoWebsite.GOOGLE_DRIVE:
         List<String> _newSplit = link.split('/d/');
@@ -255,13 +250,17 @@ class AQWebsiteDetector {
         }
         return Uri.parse(link).queryParameters['id'];
         break;
+      case AQVideoWebsite.MP4UPLOAD:
+        if (!_splits[3].contains('embed-')) return _splits[3];
+        final _firstSplit = _splits[3];
+        return _firstSplit.split('embed-')[1].split('.html')[0];
+        break;
       case AQVideoWebsite.VIDLOX:
       case AQVideoWebsite.YOUD_BOX:
       case AQVideoWebsite.UQ_LOAD:
       case AQVideoWebsite.JAWCLOUD:
       case AQVideoWebsite.VID_BEM:
       case AQVideoWebsite.VID_BOOM:
-      case AQVideoWebsite.MP4UPLOAD:
       case AQVideoWebsite.VED_SHAAR:
         final _firstSplit = _splits[3];
         return _firstSplit.split('embed-')[1].split('.html')[0];
