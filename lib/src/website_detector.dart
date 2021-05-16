@@ -4,7 +4,7 @@ class AQWebsiteDetector {
   String getEmbedWebsiteUrl(AQVideoWebsite website, String id) {
     switch (website) {
       case AQVideoWebsite.OK_RU:
-        return "https://ok.ru/video/$id";
+        return "https://ok.ru/videoembed/$id";
         break;
       case AQVideoWebsite.MYSTREAM_TO:
         return "https://embed.mystream.to/$id";
@@ -17,7 +17,7 @@ class AQWebsiteDetector {
         return "https://mega.nz/file/$id";
         break;
       case AQVideoWebsite.SOLIDFILES:
-        return "https://www.solidfiles.com/v/$id";
+        return "https://www.solidfiles.com/e/$id";
         break;
       case AQVideoWebsite.FEMBED:
       case AQVideoWebsite.FEURL:
@@ -72,23 +72,15 @@ class AQWebsiteDetector {
 
   String getXGetterUrl(AQVideoWebsite website, String id) {
     switch (website) {
-      case AQVideoWebsite.OK_RU:
-        return "https://ok.ru/video/$id";
-        break;
       case AQVideoWebsite.UP_TO_STREAM:
       case AQVideoWebsite.UP_TO_BOX:
         return "https://uptostream.com/iframe/$id";
         break;
+      case AQVideoWebsite.OK_RU:
       case AQVideoWebsite.SOLIDFILES:
-        return "https://www.solidfiles.com/v/$id";
-        break;
       case AQVideoWebsite.FEMBED:
       case AQVideoWebsite.FEURL:
-        return "https://www.fembed.com/v/$id";
-        break;
       case AQVideoWebsite.MEDIAFIRE:
-        return "https://www.mediafire.com/file/$id/$id/file";
-        break;
       case AQVideoWebsite.GOOGLE_DRIVE:
       case AQVideoWebsite.MP4UPLOAD:
       case AQVideoWebsite.FOUR_SHARED:

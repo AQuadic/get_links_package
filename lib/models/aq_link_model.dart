@@ -9,6 +9,7 @@ class AQLink {
   String embedCode;
   String xGetterLink;
   AQVideoWebsite type;
+  bool aqFetch;
 
   AQLink({
     this.nickname,
@@ -19,6 +20,7 @@ class AQLink {
     this.embedCode,
     this.xGetterLink,
     this.type,
+    this.aqFetch,
   });
 
   Map<String, dynamic> toMap() {
@@ -31,6 +33,7 @@ class AQLink {
       'x_getter_link': this.xGetterLink,
       'type': this.type,
       'link_id': this.linkId,
+      'aq_fetch': this.aqFetch,
     };
   }
 

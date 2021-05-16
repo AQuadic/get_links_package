@@ -1,8 +1,14 @@
 name: get_links
 description: to get links easily
-version: 0.0.3
+version: 0.0.5
 author: AQuadic Software Solutions (Hello@AQuadic.com)
-homepage: https://github.com/TinyProgrammers/get_links_package
+homepage: https://github.com/AQuadic/get_links_package
 
 environment:
   sdk: ">=2.11.0 <3.0.0"
+
+dependencies:
+  dio: ^4.0.0
+  dio_cookie_manager: ^2.0.0
+  filesize: ^2.0.1
+  quiver: ^3.0.1

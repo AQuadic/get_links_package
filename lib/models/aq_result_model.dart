@@ -4,6 +4,13 @@ class AQLinkResult {
   String quality;
   String size;
 
+  AQLinkResult({
+    this.url,
+    this.cookie,
+    this.quality,
+    this.size,
+  });
+
   AQLinkResult.fromMap(Map<String, dynamic> map) {
     url = map['url'];
     cookie = map['cookie'];
