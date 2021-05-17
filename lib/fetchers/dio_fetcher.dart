@@ -260,6 +260,7 @@ class DioFetcher {
       {String id, String token}) async {
     // Get Full Quality.
     final _fullQuality = await _fetchGDriveFullQ(id: id, token: token);
+    return [_fullQuality];
 
     final _response = await _dio.get(
       'https://drive.google.com/get_video_info',
