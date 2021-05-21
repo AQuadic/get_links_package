@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:get_links/get_links.dart';
 
 void main() async {
-  print("Hello, Welcome to AQParser.\nEnter your Link:\n");
+  print("Hello, Welcome to AQParser.\nEnter your Link:");
   final link = stdin.readLineSync();
   final _parsed = AQFetcher.parseStreamLink(link: link);
   print("Link Parsed to: $_parsed");
