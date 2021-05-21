@@ -39,4 +39,10 @@ class AQLink {
 
   @override
   String toString() => "(AQLink: ${toMap()})";
+
+  @override
+  bool operator ==(Object other) => other is AQLink && other.linkId == this.linkId && other.type == this.type;
+
+  @override
+  int get hashCode => this.linkId.hashCode;
 }
