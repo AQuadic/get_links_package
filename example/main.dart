@@ -1,11 +1,18 @@
+import 'dart:io';
+
 import 'package:get_links/get_links.dart';
 
 void main() async {
-  final _parsed = AQFetcher.parseStreamLink(link: "https://drive.google.com/get_video_info?id=1Xei5Mw4uPArruFuhg7ouVxq6w4KMylAC");
-  print(_parsed.toMap());
+  print("Hello, Welcome to AQParser.\nEnter your Link:\n");
+  final link = stdin.readLineSync();
+  final _parsed = AQFetcher.parseStreamLink(link: link);
+  print("Link Parsed to: $_parsed");
+  print("Please wait, while we fetch stream links.");
   final _links = await AQFetcher.getStreamLink(link: _parsed);
 
-  _links.forEach((element) {
+  print("Stream links found!.");
+  _links.forEach((element) async {
+    element.size = await AQFetcher.fetchVideoSize(aqResult: element);
     print(element.toMap());
   });
 }

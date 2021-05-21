@@ -28,9 +28,18 @@ abstract class AQFetcher {
     );
   }
 
-  static Future<List<AQLinkResult>> getStreamLink(
-      {AQLink link, String token}) async {
-    return await DioFetcher.instance
-        .fetch(link.type, link.linkId, token: token);
+  static Future<List<AQLinkResult>> getStreamLink({
+    AQLink link,
+    String token,
+  }) async {
+    return await DioFetcher.instance.fetch(
+      link.type,
+      link.linkId,
+      token: token,
+    );
+  }
+
+  static Future<String> fetchVideoSize({AQLinkResult aqResult}) async {
+    return await DioFetcher.instance.getVideoSize(link: aqResult);
   }
 }
