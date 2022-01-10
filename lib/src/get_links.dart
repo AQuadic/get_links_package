@@ -1,6 +1,5 @@
 import 'package:get_links/fetchers/dio_fetcher.dart';
 import 'package:get_links/get_links.dart';
-import 'package:get_links/models/aq_link_model.dart';
 import 'package:get_links/src/website_detector.dart';
 
 abstract class AQFetcher {
