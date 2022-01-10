@@ -1,8 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
+
+import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
-import 'package:cookie_jar/cookie_jar.dart';
 import 'package:filesize/filesize.dart';
 import 'package:get_links/enum/video_website.dart';
 import 'package:get_links/get_links.dart';
@@ -216,7 +217,7 @@ class DioFetcher {
 
   Future<List<AQLinkResult>> _fetchFembed({String id}) async {
     final _response = await _dio.post(
-      'https://www.feurl.com/api/source/$id',
+      'https://www.fembed.com/api/source/$id',
     );
 
     final _data = _response.data as Map<String, dynamic>;

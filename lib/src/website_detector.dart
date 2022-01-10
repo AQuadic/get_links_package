@@ -21,7 +21,7 @@ class AQWebsiteDetector {
         break;
       case AQVideoWebsite.FEMBED:
       case AQVideoWebsite.FEURL:
-        return "https://feurl.com/v/$id";
+        return "https://fembed.com/v/$id";
         break;
       case AQVideoWebsite.GOOGLE_DRIVE:
         return "https://drive.google.com/file/d/$id/view?usp=sharing";
